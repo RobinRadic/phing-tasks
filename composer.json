@@ -1,0 +1,36 @@
+{
+  "name": "radic/phing-tasks",
+  "description": "Changelog generator, VendorBinExec, etc",
+  "homepage": "https://github.com/RobinRadic/phing-tasks",
+  "keywords": [
+    "phing",
+    "build",
+    "tasks"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robin Radic",
+      "email": "robin@radic.nl",
+      "role": "Author"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*",
+    "phing/phing": "2.*",
+    "phpmd/phpmd": "~2.2",
+    "squizlabs/php_codesniffer": "2.*"
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "autoload": {
+    "psr-4": {
+      "Radic\\PhingTasks\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}

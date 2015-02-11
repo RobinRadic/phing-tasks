@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="radic-phing-tasks-build" description="Dev tasks" default="debug" basedir=".">
+    <import file="tasks.xml" />
+    <property name="builddir" value="${project.basedir}/build"/>
+    <property name="bindir" value="${project.basedir}/vendor/bin"/>
+    <property name="srcdir" value="${project.basedir}/src"/>
+
+    <target name="clean">
+        <delete dir="vendor"/>
+        <delete file="composer.lock"/>
+    </target>
+
+    <target name="install">
+        <exec command="composer install"/>
+        <mkdir dir="${builddir}"/>
+    </target>
+
+    <target name="prepare">
+        <exec command="composer dumpautoload"/>
+        <delete dir="${builddir}"/>
+        <mkdir dir="${builddir}"/>
+    </target>
+
+    <target name="debug" depends="prepare">
+        <echo message="Running PHP Mess Detector"/>
+        <bin command="phpmd ${srcdir} text codesize,naming" passthru="true"/>
+
+        <echo message="Running PHP Code Sniffer"/>
+        <bin command="phpcs --report-info --standard=PSR2 ${srcdir}" passthru="true"/>
+    </target>
+
+    <target name="changelog">
+        <delete file="${changelog.filename}"/>
+        <exec command="echo '${changelog.header} \n' >> ${changelog.filename}"/>
+        <exec command='git log --date=short --format="- [%cd](https://github.com/robinradic/blade-extensions/commit/%H) %gs %s  " >> ${changelog.filename}'/>
+    </target>
+
+</project>
