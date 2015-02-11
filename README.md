@@ -1,4 +1,4 @@
-phing-securitychecker
+radic phing-tasks
 =====================
 
 

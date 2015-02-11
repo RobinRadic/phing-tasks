@@ -3,7 +3,20 @@
 
 use ExecTask;
 
-class ChangelogTask extends ExecTask {
+class ChangelogTask extends \Task {
+
+    protected $user;
+    protected $project;
+    protected $token;
+    protected $issues = true;
+    protected $issuesWithoutLabels;
+    protected $pullRequests;
+    protected $lastChanges;
+    protected $author;
+    protected $dateFormat;
+    protected $output;
+    protected $labels;
+
 
     /**
      * Main method: wraps execute() command.
@@ -12,15 +25,22 @@ class ChangelogTask extends ExecTask {
      */
     public function main()
     {
-        if (!$this->isApplicable()) {
-            return;
-        }
 
-        $this->prepare();
-        $this->command = "php vendor/bin/" . $this->command;
-        $this->buildCommand();
-
-        list($return, $output) = $this->executeCommand();
-        $this->cleanup($return, $output);
     }
+
+    protected function generateCommand()
+    {
+
+    }
+
+    protected function checkRubyDependency()
+    {
+
+    }
+
+    protected function execute()
+    {
+
+    }
+
 }
